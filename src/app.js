@@ -16,7 +16,7 @@ angular.element(document).ready(function() {
 				$stateProvider
 					.state('home', {
 						url: '/',
-						template: '<div>Home page</div>'
+						template: '<div>Hoge</div>'
 					});
 			}
 		]);
