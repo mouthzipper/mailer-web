@@ -93,24 +93,24 @@ angular.element(document).ready(function() {
 						controller :'TemplateController',
 						controllerAs : 'vm'
 					})
-						.state('create', {
-							url: '/template/:mode',
-							templateUrl: 'template.editor.html',
-							controller: 'TemplateEditorController',
-							controllerAs: 'vm'
-						})
-						.state( 'edit', {
-							url: '/template/:id/edit',
-							templateUrl: 'template.editor.html',
-							controller: 'TemplateEditorController',
-							controllerAs: 'vm'
-						})
-						.state( 'view', {
-							url: '/template/:id/:mode',
-							templateUrl: 'template.editor.viewer.html',
-							controller: 'TemplateEditorController',
-							controllerAs: 'vm'
-						});
+					.state('create', {
+						url: '/template/:mode',
+						templateUrl: 'template.editor.html',
+						controller: 'TemplateEditorController',
+						controllerAs: 'vm'
+					})
+					.state( 'edit', {
+						url: '/template/:id/edit',
+						templateUrl: 'template.editor.html',
+						controller: 'TemplateEditorController',
+						controllerAs: 'vm'
+					})
+					.state( 'view', {
+						url: '/template/:id/:mode',
+						templateUrl: 'template.editor.viewer.html',
+						controller: 'TemplateEditorController',
+						controllerAs: 'vm'
+					});
 			}
 		]);
 

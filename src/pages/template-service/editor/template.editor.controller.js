@@ -2,63 +2,51 @@
 
 var TemplateEditorController = function ( $state, $scope, TemplateServices, $stateParams, $sce ) {
 	var vm = this;
-	vm.greeting = 'Manage templates.';
 
+	vm.mode = $stateParams.mode || 'edit';
 
-	$scope.mode = $stateParams.mode || 'edit';
-
-	console.log( $scope.mode )
-
-	$scope.templateDetails = {
+	console.log( vm.mode );
+	vm.templateDetails = {
 			name : '',
 			description : '',
 			content : ''
 		};
 
-	$scope.createNewTemplate = function () {
-		/*TemplateServices.createTemplate( $scope.templateDetails ).then( function () {
+	vm.createNewTemplate = function () {
+		TemplateServices.createTemplate( vm.templateDetails ).then( function () {
 			$state.go( 'template' );
-		} );*/
-
-		TemplateServices.createTemplate( $scope.templateDetails );
-		$state.go( 'template' );
+		} );
 	};
 
-	$scope.updateTemplate = function () {
-		/*TemplateServices.updateTemplate( $stateParams.id, $scope.templateDetails ).then( function () {
+	vm.updateTemplate = function ( id ) {
+		delete vm.templateDetails.id;
+		TemplateServices.updateTemplate( id, vm.templateDetails ).then( function () {
 			$state.go( 'template' );
-		} );*/
-
-		TemplateServices.updateTemplate( $stateParams.id, $scope.templateDetails )
-		$state.go( 'template' );
+		} );
 	};
 
-	if( $scope.mode === 'create' ) {
+	if( vm.mode === 'create' ) {
 		vm.greeting = 'Manage templates.';
 
-		$scope.editorMode = 'Create New template';
+		vm.editorMode = 'Create New template';
 
-	} else if ( $scope.mode === 'edit' ) {
-		$scope.editorMode = 'Edit template';
-		/*TemplateServices.getTemplateById( $stateParams.id ).then( function ( templateDetails ) {
-			$scope.templateDetails = templateDetails;
-		} );*/
-		var templateDetails = TemplateServices.getTemplateById( $stateParams.id );
+	} else if ( vm.mode === 'edit' ) {
+		vm.editorMode = 'Edit template';
+		TemplateServices.getTemplateById( $stateParams.id ).then( function ( response ) {
+			vm.templateDetails = response.data;
+		} );
 
-		$scope.templateDetails = templateDetails[ 0 ];
+	} else if ( vm.mode === 'view' ) {
+		vm.editorMode = 'View template';
+		TemplateServices.getTemplateById( $stateParams.id ).then( function ( response ) {
+			vm.templateDetails = response.data;
 
-	} else if ( $scope.mode === 'view' ) {
+			var compiled = hogan.compile( vm.templateDetails.content );
 
-		$scope.editorMode = 'View template';
-		var templateDetails = TemplateServices.getTemplateById( $stateParams.id );
-
-		var compiled = hogan.compile( templateDetails[ 0 ].content );
-
-		$scope.$watchCollection( '[ name, company, product, expiryDate ]', function () {
-			$scope.templateDetails = $sce.trustAsHtml( compiled.render( $scope ) );
-		} )
-
-		$scope.templateId = templateDetails[ 0 ].id;
+			$scope.$watchCollection( '[ name, description, content ]', function () {
+				vm.templateDetails = $sce.trustAsHtml( compiled.render( $scope ) );
+			} );
+		});
 	}
 
 };

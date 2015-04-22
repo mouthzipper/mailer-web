@@ -5,19 +5,19 @@
 		<thead>
 			<th>Name</th>
 			<th>Description</th>
-			<th>Created At</th>
+			<th>Content</th>
 			<th>Options</th>
 		</thead>
 		<tfoot></tfoot>
 		<tbody>
-			<tr ng-repeat="template in templates">
+			<tr ng-repeat="template in vm.templates">
 				<td>{{ template.name }}</td>
 				<td>{{ template.description }}</td>
-				<td>{{ template.createdAt }}</td>
+				<td>{{ template.content }}</td>
 				<td>
 					<a ui-sref="view( { id : '{{ template.id }}', mode : 'view' } )">View</a>
 					<a ui-sref="edit( { id : '{{ template.id }}', mode : 'edit' } )">Edit</a>
-					<a href="" ng-click="deleteTemplate( template.id )">Delete</a>
+					<a href="" ng-click="vm.deleteTemplate( template.id )">Delete</a>
 				</td>
 			</tr>
 		</tbody>

@@ -1,16 +1,16 @@
 'use strict';
 
 var ComposeController = function ( $http, $state ) {
-	var vm = this;
-	vm.title = 'Compose';
-	vm.mail = {};
+	var vm        = this;
+	vm.title      = 'Compose';
+	vm.mail       = {};
 	vm.submitForm = submitForm;
 
 	function submitForm () {
 		var data = { from : vm.mail.from, to : vm.mail.to, subject : vm.mail.subject, text : vm.mail.text };
 		var req = {
 			method  : 'POST',
-			url     : 'http://192.168.1.32:8005/sendEmail',
+			url     : 'http://192.168.1.5:8005/email',// replace with docker ip
 			data    : data,
 			headers : { 'Content-Type': 'application/json' }
 		};
@@ -23,6 +23,6 @@ var ComposeController = function ( $http, $state ) {
 			} );
 	}
 };
-ComposeController.$inject = [ '$http' ];
+ComposeController.$inject = [ '$http', '$state' ];
 
 module.exports = ComposeController;

@@ -1,21 +1,21 @@
 <div class="container bg-white">
-	<h1 class="text-center">{{ editorMode }}</h1>
+	<h1 class="text-center">{{ vm.editorMode }}</h1>
 	<form class="form">
 		<div class="form-group">
 			<label class="form-label" for="template-name">Name</label>
-			<input type="text" class="form-control" id="template-name" placeholder="Template Name" ng-model="templateDetails.name">
+			<input type="text" class="form-control" id="template-name" placeholder="Template Name" ng-model="vm.templateDetails.name">
 		</div>
 		<div class="form-group">
 			<label class="form-label" for="template-description">Description</label>
-			<input type="text" class="form-control" id="template-description" placeholder="Template Description" ng-model="templateDetails.description">
+			<input type="text" class="form-control" id="template-description" placeholder="Template Description" ng-model="vm.templateDetails.description">
 		</div>
 		<div class="form-group">
 			<label class="form-label" for="template-content">Content</label>
-			<text-angular class="form-control" id="template-content" placeholder="Template Description" ng-model="templateDetails.content"></text-angular>
+			<text-angular class="form-control" id="template-content" placeholder="Template Description" ng-model="vm.templateDetails.content"></text-angular>
 		</div>
 		<div class="form-group">
-			<input type="button" class="btn btn-primary pull-right" value="Create" ng-model="isCreateMode" ng-click="createNewTemplate()" ng-if="mode === 'create'">
-			<input type="button" class="btn btn-primary pull-right" value="Update" ng-model="isCreateMode" ng-click="updateTemplate()" ng-if="mode === 'edit'">
+			<input type="button" class="btn btn-primary pull-right" value="Create" ng-model="isCreateMode" ng-click="vm.createNewTemplate()" ng-if="vm.mode === 'create'">
+			<input type="button" class="btn btn-primary pull-right" value="Update" ng-model="isCreateMode" ng-click="vm.updateTemplate( vm.templateDetails.id)" ng-if="vm.mode === 'edit'">
 			<div class="clearfix"></div>
 		</div>
 	</form>
