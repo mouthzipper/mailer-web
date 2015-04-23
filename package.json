@@ -5,7 +5,9 @@
   "main": "build/index.html",
   "scripts": {
     "start": "gulp serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bower": "bower",
+    "gulp": "gulp"
   },
   "keywords": [],
   "engines": {
@@ -20,6 +22,7 @@
     "bootstrap-sass": "^3.3.4",
     "bootstrap-sass-loader": "^1.0.3",
     "bootstrap-webpack": "0.0.3",
+    "bower": "^1.4.1",
     "chai": "^1.9.1",
     "coffee-loader": "*",
     "coffee-script": "~1.8.0",

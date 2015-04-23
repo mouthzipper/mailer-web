@@ -1,0 +1,10 @@
+emailService:
+  image: nginx
+  volumes_from:
+    - mailerPublic
+  ports:
+    - "9000:80"
+
+mailerPublic:
+  image: eskrima/email-public
+
