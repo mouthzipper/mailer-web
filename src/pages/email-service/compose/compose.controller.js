@@ -10,13 +10,13 @@ var ComposeController = function ( $http, $state ) {
 		var data = { from : vm.mail.from, to : vm.mail.to, subject : vm.mail.subject, text : vm.mail.text };
 		var req = {
 			method  : 'POST',
-			url     : 'http://192.168.1.5:8005/email',// replace with docker ip
+			url     : 'http://192.168.1.5:8005/emails/send',// replace with docker ip
 			data    : data,
 			headers : { 'Content-Type': 'application/json' }
 		};
 		$http( req )
 			.success( function( response ){
-				$state.go( 'inbox' );
+				$state.go( 'email.inbox' );
 			} )
 			.error( function ( error ) {
 				console.log( error );
